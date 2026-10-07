@@ -5,6 +5,11 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 
+import os
+
+# Crear la carpeta si no existe aún
+os.makedirs("datos_procesados", exist_ok=True)
+
 # Scraping popular programming languages
 url_languages = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DA0321EN-SkillsNetwork/labs/datasets/Programming_Languages.html"
 response = requests.get(url_languages)
@@ -41,5 +46,5 @@ age_mapping = {
 df_survey['Age_numeric'] = df_survey['Age'].map(age_mapping)
 
 # Save cleaned dataset
-df_survey.to_csv("Capstone/survey_data_updated 5.csv", index=False)
+df_survey.to_csv("datos_procesados/survey_data_updated.csv", index=False)
 print(f"Cleaned dataset saved. Shape: {df_survey.shape}")
