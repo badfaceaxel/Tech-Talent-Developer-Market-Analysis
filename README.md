@@ -1,53 +1,86 @@
 # 📊 Tech Talent & Developer Market Analysis
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat&logo=python)
-![IBM Cognos](https://img.shields.io/badge/IBM%20Cognos-Analytics-blueviolet?style=flat)
-![SQL](https://img.shields.io/badge/SQL-Data_Analysis-orange)
-
-## 📌 Project Overview & Executive Summary
-This project analyzes the global tech ecosystem based on developer survey data and web-scraped job posting insights. The goal is to identify current technology adoption, emerging tech trends, compensation benchmarkings, and demographic distributions among software developers worldwide.
-
-* **Project Type:** End-to-End Data Analysis (Data Collection, Cleaning, EDA & Executive Dashboarding)
-* **Dataset:** ~18,800 survey responses + API/Web-scraped technology listings.
-* **Tools Used:** Python (Pandas, BeautifulSoup, Requests), IBM Cognos Analytics, SQL.
+A comprehensive data analysis project examining global software developer survey data to uncover insights on demographics, technology stack adoption, salary distributions, and platform preferences.
 
 ---
 
-## 🎯 Key Business Insights
+## 📌 Project Overview
 
-1. **Current vs. Future Tech Demand:**
-   * **Languages:** JavaScript, HTML/CSS, and SQL lead current usage, but **Python** and **TypeScript** show the highest demand for future adoption.
-   * **Databases:** PostgreSQL and MySQL remain dominant, with growing developer interest in cloud databases (AWS DynamoDB, Firebase).
-2. **Demographics & Workforce:**
-   * Over **67%** of surveyed tech professionals fall within the 25–44 age bracket.
-   * **Bachelor's degrees** represent the majority of formal education levels among developers (~58%).
+This repository contains an end-to-end Data Analysis workflow designed to process, clean, transform, and analyze developer survey responses. The goal of this project is to provide actionable market intelligence regarding high-demand skills, compensation trends, and technological adoption patterns.
 
 ---
 
-## 📸 Dashboard Previews (IBM Cognos)
+## 📁 Repository Structure
 
-| Current Technology Usage | Future Technology Trends |
-| :---: | :---: |
-| ![Current Tech](assets/dashboard_preview.png) | ![Future Trends](assets/future_trends_preview.png) |
+```text
+.
+├── assets/
+│   ├── .gitkeep
+│   ├── dashboard_preview.png             # Dashboard overview screenshot
+│   └── demographics_preview.png          # Demographics analysis screenshot
+├── dashboard/
+│   └── IBM_Cognos_Dashboard_Report...    # Exported IBM Cognos report file
+├── data/
+│   ├── processed/
+│   │   ├── survey_data_updated 5.zip     # Cleaned and transformed primary dataset
+│   │   └── splits/                       # Normalized (1:N) datasets for Cognos BI filtering
+│   │       ├── DatabaseHaveWorkedWith_split.csv
+│   │       ├── DatabaseWantToWorkWith_split.csv
+│   │       ├── LanguageHaveWorkedWith_split.csv
+│   │       ├── LanguageWantToWorkWith_split.csv
+│   │       ├── PlatformHaveWorkedWith_split.csv
+│   │       ├── PlatformWantToWorkWith_split.csv
+│   │       ├── WebframeHaveWorkedWith_split.csv
+│   │       └── WebframeWantToWorkWith_split.csv
+│   └── raw/
+│       └── dataset_link.txt                 # Source reference and link to original raw data
 
----
+🛠️ Data Pipeline & BI Data Modeling
+Exploratory Data Analysis (EDA) & Data Cleaning:
 
-## 🛠️ Project Workflow
+Processed raw survey responses, handled missing values, corrected data types, and normalized numerical metrics.
 
-### 1. Data Acquisition (Web Scraping & APIs)
-* Extracted job demand and popular programming language metrics using `BeautifulSoup` and REST API endpoints.
+Exported the consolidated clean dataset (survey_data_updated 5.zip).
 
-### 2. Data Wrangling & Cleaning (Python / Pandas)
-* Identified and removed duplicate entries.
-* Standardized categorical variables (e.g., age mapping to numerical equivalents).
-* Handled missing values and exported clean datasets for BI modeling.
+Data Normalization for Business Intelligence (IBM Cognos):
 
-### 3. Exploratory Data Analysis (EDA) & Visualization
-* Developed interactive multi-page executive dashboards using **IBM Cognos Analytics** covering:
-  * **Current Tech Stack:** Top 10 languages, platforms, databases, and web frameworks.
-  * **Future Tech Trends:** Most desired technologies to learn/adopt.
-  * **Demographics:** Geographic distribution, education levels, and age breakdown.
+Multi-select survey fields (e.g., Languages, Databases, Web Frameworks, Platforms) contained semicolon-separated values within single cells.
 
----
+To enable accurate filtering, aggregation, and relational modeling in IBM Cognos, these columns were split and exploded into 1-to-N relational tables (data/processed/splits/).
 
-## 📂 Repository Structure
+This structure allows precise dynamic drill-downs on developer preferences without double-counting biases.
+
+📈 Key Insights & Findings
+Top Remunerated Technologies: Languages like Swift and Python show high compensation medians relative to global averages.
+
+Skill Demand vs. Desire: High correlation between current language usage and future adoption interest in modern web frameworks and cloud platforms.
+
+Demographic Distribution: Detailed breakdown of experience levels, primary roles, and regional participation.
+
+🚀 How to Run the Project
+Clone the Repository:
+
+git clone [https://github.com/badfaceaxel/Tech-Talent-Developer-Market-Analysis.git](https://github.com/badfaceaxel/Tech-Talent-Developer-Market-Analysis.git)
+cd Tech-Talent-Developer-Market-Analysis
+
+Run the Notebook:
+
+Open notebooks/notebook.ipynb using Jupyter Notebook, JupyterLab, or Google Colab.
+
+Execute the cells sequentially to reproduce the data processing and preliminary visualizations.
+
+Explore the Dashboard:
+
+Import the report file in dashboard/ into IBM Cognos Analytics to interact with the visual dashboard.
+
+🧰 Technologies & Tools Used
+Language: Python
+
+Data Processing: Pandas, NumPy
+
+Data Visualization & BI: IBM Cognos Analytics, Matplotlib / Seaborn
+
+Environment: Jupyter Notebook, Git/GitHub
+├── notebooks/
+│   └── notebook.ipynb                       # Complete Jupyter Notebook (ETL & EDA)
+└── README.md                                # Project documentation
